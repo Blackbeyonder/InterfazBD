@@ -1,0 +1,68 @@
+APICULTORES###############
+
+CREATE TABLE "apicultores" (
+	"idApicultor"	int(11) NOT NULL,
+	"Nombre_Api"	int(11) NOT NULL,
+	"Municipio_Api"	varchar(45) NOT NULL,
+	"Telefono_Api"	varchar(45) NOT NULL,
+	PRIMARY KEY("idApicultor")
+);
+
+---------------------------------
+COMPRA-APICULTOR###############
+
+CREATE TABLE "compra_apicultor" (
+	"fk_idCOMPRAS"	int(11) NOT NULL,
+	"fk_idApicultor"	int(11) NOT NULL,
+	CONSTRAINT "fk_APICULTORES1" FOREIGN KEY("fk_idApicultor") REFERENCES "apicultores"("idApicultor"),
+	CONSTRAINT "fk_COMPRAS1" FOREIGN KEY("fk_idCOMPRAS") REFERENCES "compras"("idCOMPRAS")
+);
+
+----------------------------------------
+COMPRAS2
+
+CREATE TABLE "compras2" (
+	"idCOMPRAS"	int(11) NOT NULL,
+	"CFecha"	datetime NOT NULL,
+	"CPrecio"	varchar(45) NOT NULL,
+	PRIMARY KEY("idCOMPRAS")
+);
+
+----------------------------------------
+
+EMPLEADOS
+
+CREATE TABLE "empleados" (
+	"fk_idTAMBOR"	int(11) NOT NULL,
+	"Nombre_Emp"	varchar(45) NOT NULL,
+	"Municipio_Emp"	varchar(45) NOT NULL,
+	"Telefono_Emp"	varchar(45) NOT NULL,
+	"Salario_Emp"	varchar(45) NOT NULL,
+	CONSTRAINT "fk_TAMBOR1" FOREIGN KEY("fk_idTAMBOR") REFERENCES "tambor"("idTAMBOR")
+);
+
+---------------------------------------
+
+TAMBOR
+
+CREATE TABLE "tambor" (
+	"idTAMBOR"	int(11) NOT NULL,
+	"fk_idCOMPRAS"	int(11) NOT NULL,
+	"Fechadeingreso"	date NOT NULL,
+	"Estadodeltambor"	varchar(45) NOT NULL,
+	PRIMARY KEY("idTAMBOR"),
+	CONSTRAINT "fk_TAMBOR_COMPRAS1" FOREIGN KEY("fk_idCOMPRAS") REFERENCES "compras"("idCOMPRAS")
+);
+
+------------------------------------------
+
+VENTAS
+
+CREATE TABLE "ventas" (
+	"idVENTAS"	int(11) NOT NULL,
+	"fk_idTAMBOR"	int(11) NOT NULL,
+	"VFecha"	date NOT NULL,
+	"VPrecio"	varchar(45) NOT NULL,
+	PRIMARY KEY("idVENTAS"),
+	CONSTRAINT "fk_TAMBOR1" FOREIGN KEY("fk_idTAMBOR") REFERENCES "tambor"("idTAMBOR")
+);

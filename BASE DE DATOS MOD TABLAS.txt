@@ -1,0 +1,17 @@
+CREATE TABLE "producto" (
+	"idProducto"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"fk_idCOMPRAS"	int(11) NOT NULL,
+	"fk_fecha_idCOMPRAS"	TEXT NOT NULL,
+	"Pdisponibilidad"	TEXT NOT NULL,
+	CONSTRAINT "fk_Producto_COMPRAS" FOREIGN KEY("fk_idCOMPRAS") REFERENCES "compras"("idCOMPRAS"),
+	CONSTRAINT "fk_Producto_fecha_COMPRAS" FOREIGN KEY("fk_fecha_idCOMPRAS") REFERENCES "compras"("CFecha")
+);
+
+.................
+CREATE TABLE "venta" (
+	"idVENTAS"	int(11) NOT NULL,
+	"fk_idProducto"	int(11) NOT NULL,
+	"VFecha"	TEXT NOT NULL,
+	"VPrecio"	TEXT NOT NULL,
+	CONSTRAINT "fk_Producto" FOREIGN KEY("fk_idProducto") REFERENCES "producto"("idProducto")
+);
